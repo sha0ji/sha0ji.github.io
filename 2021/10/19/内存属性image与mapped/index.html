@@ -28,7 +28,7 @@
 <meta property="og:description" content="12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455#include &lt;Windows.h&gt;#include &lt;stdio.h&gt;int main()&amp;#123;    HANDLE hMapped &#x3D;     CreateFi">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-10-19T09:20:52.806Z">
-<meta property="article:modified_time" content="2021-10-19T09:23:33.697Z">
+<meta property="article:modified_time" content="2021-10-20T03:48:00.682Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
 
@@ -172,10 +172,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2021-10-19 17:20:52 / Modified: 17:23:33" itemprop="dateCreated datePublished" datetime="2021-10-19T17:20:52+08:00">2021-10-19</time>
+              <time title="Created: 2021-10-19 17:20:52" itemprop="dateCreated datePublished" datetime="2021-10-19T17:20:52+08:00">2021-10-19</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-10-20 11:48:00" itemprop="dateModified" datetime="2021-10-20T11:48:00+08:00">2021-10-20</time>
+              </span>
 
           
 
@@ -192,7 +198,15 @@
 
 
 
-<p>指定SEC_IMAGE会按内存对齐去映射PE文件，且内存属性会为IMAGE。</p>
+<p>SEC_IMAGE:</p>
+<ul>
+<li><p>读取 PE 标头并验证它，如果 PE 标头无效，它将失败</p>
+</li>
+<li><p>从 PE 标头中提取节表</p>
+</li>
+<li><p>根据节表映射二进制文件</p>
+</li>
+</ul>
 
     </div>
 
@@ -211,7 +225,10 @@
     <a href="/2021/10/19/hello-world/" rel="prev" title="Hello World">
       <i class="fa fa-chevron-left"></i> Hello World
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2021/10/20/%E5%9C%A8%E9%A9%B1%E5%8A%A8%E4%B8%AD%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0INTEGRITYCHECK%E4%BB%A5%E8%B0%83%E7%94%A8PsSetCreateProcessNotifyRoutineEx%20/" rel="next" title="在驱动中代码实现INTEGRITYCHECK以调用PsSetCreateProcessNotifyRoutineEx">
+      在驱动中代码实现INTEGRITYCHECK以调用PsSetCreateProcessNotifyRoutineEx <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -283,7 +300,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">2</span>
+          <span class="site-state-item-count">3</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

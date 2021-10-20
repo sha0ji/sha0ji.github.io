@@ -145,6 +145,66 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/10/20/%E5%9C%A8%E9%A9%B1%E5%8A%A8%E4%B8%AD%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0INTEGRITYCHECK%E4%BB%A5%E8%B0%83%E7%94%A8PsSetCreateProcessNotifyRoutineEx%20/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/10/20/%E5%9C%A8%E9%A9%B1%E5%8A%A8%E4%B8%AD%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0INTEGRITYCHECK%E4%BB%A5%E8%B0%83%E7%94%A8PsSetCreateProcessNotifyRoutineEx%20/" class="post-title-link" itemprop="url">在驱动中代码实现INTEGRITYCHECK以调用PsSetCreateProcessNotifyRoutineEx</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2021-10-20 14:04:45 / Modified: 14:11:28" itemprop="dateCreated datePublished" datetime="2021-10-20T14:04:45+08:00">2021-10-20</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">PLDR_DATA ldr = (PLDR_DATA)(MyDriverObject-&gt;DriverSection);</span><br><span class="line">ldr-&gt;Flags |= <span class="number">0x20</span>;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="http://example.com/2021/10/19/%E5%86%85%E5%AD%98%E5%B1%9E%E6%80%A7image%E4%B8%8Emapped/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -168,10 +228,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2021-10-19 17:20:52 / Modified: 17:23:33" itemprop="dateCreated datePublished" datetime="2021-10-19T17:20:52+08:00">2021-10-19</time>
+              <time title="Created: 2021-10-19 17:20:52" itemprop="dateCreated datePublished" datetime="2021-10-19T17:20:52+08:00">2021-10-19</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-10-20 11:48:00" itemprop="dateModified" datetime="2021-10-20T11:48:00+08:00">2021-10-20</time>
+              </span>
 
           
 
@@ -188,7 +254,15 @@
 
 
 
-<p>指定SEC_IMAGE会按内存对齐去映射PE文件，且内存属性会为IMAGE。</p>
+<p>SEC_IMAGE:</p>
+<ul>
+<li><p>读取 PE 标头并验证它，如果 PE 标头无效，它将失败</p>
+</li>
+<li><p>从 PE 标头中提取节表</p>
+</li>
+<li><p>根据节表映射二进制文件</p>
+</li>
+</ul>
 
       
     </div>
@@ -340,7 +414,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">2</span>
+          <span class="site-state-item-count">3</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
