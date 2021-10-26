@@ -145,6 +145,136 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/10/25/%E9%A9%B1%E5%8A%A8%E8%8E%B7%E5%8F%96%E8%BF%9B%E7%A8%8B%E6%98%AF%E5%90%A6wow64/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/10/25/%E9%A9%B1%E5%8A%A8%E8%8E%B7%E5%8F%96%E8%BF%9B%E7%A8%8B%E6%98%AF%E5%90%A6wow64/" class="post-title-link" itemprop="url">驱动获取进程是否wow64</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-10-25 10:48:57" itemprop="dateCreated datePublished" datetime="2021-10-25T10:48:57+08:00">2021-10-25</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-10-26 14:55:02" itemprop="dateModified" datetime="2021-10-26T14:55:02+08:00">2021-10-26</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p> 通过EPROCESS：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">PPEB32</span></span><br><span class="line"><span class="function">__stdcall</span></span><br><span class="line"><span class="function"><span class="title">PsGetProcessWow64Process</span><span class="params">(</span></span></span><br><span class="line"><span class="params"><span class="function">    PEPROCESS process</span></span></span><br><span class="line"><span class="params"><span class="function">)</span></span>;</span><br><span class="line">目标进程为<span class="number">64</span>位，PsGetProcessWow64Process返回的指针为空，</span><br><span class="line">目标进程为<span class="number">32</span>位，PsGetProcessWow64Process返回PPEB32</span><br><span class="line">    </span><br></pre></td></tr></table></figure>
+
+<p> 通过句柄：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">NTSYSAPI</span></span><br><span class="line"><span class="function">NTSTATUS</span></span><br><span class="line"><span class="function">NTAPI</span></span><br><span class="line"><span class="function"><span class="title">ZwQueryInformationProcess</span><span class="params">(</span></span></span><br><span class="line"><span class="params"><span class="function">    _In_      HANDLE           ProcessHandle,</span></span></span><br><span class="line"><span class="params"><span class="function">    _In_      PROCESSINFOCLASS ProcessInformationClass,</span></span></span><br><span class="line"><span class="params"><span class="function">    _Out_     PVOID            ProcessInformation,</span></span></span><br><span class="line"><span class="params"><span class="function">    _In_      ULONG            ProcessInformationLength,</span></span></span><br><span class="line"><span class="params"><span class="function">    _Out_opt_ PULONG           ReturnLength</span></span></span><br><span class="line"><span class="params"><span class="function">)</span></span>;</span><br><span class="line"></span><br><span class="line">ProcessInformationClass为枚举类型，取ProcessWow64Information。</span><br><span class="line">ProcessInformation返回PPEB32</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/10/20/%E9%80%9A%E8%BF%87PDRIVER_OBJECT%E7%9A%84DriverSection%E9%81%8D%E5%8E%86%E9%A9%B1%E5%8A%A8%E8%87%AA%E5%B7%B1%E7%9A%84%E6%89%80%E6%9C%89%E6%A8%A1%E5%9D%97/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/10/20/%E9%80%9A%E8%BF%87PDRIVER_OBJECT%E7%9A%84DriverSection%E9%81%8D%E5%8E%86%E9%A9%B1%E5%8A%A8%E8%87%AA%E5%B7%B1%E7%9A%84%E6%89%80%E6%9C%89%E6%A8%A1%E5%9D%97/" class="post-title-link" itemprop="url">通过PDRIVER_OBJECT的DriverSection遍历驱动自己的所有模块</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2021-10-20 14:22:08 / Modified: 14:26:16" itemprop="dateCreated datePublished" datetime="2021-10-20T14:22:08+08:00">2021-10-20</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;wdm.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DebugPrint(...) DbgPrintEx(DPFLTR_IHVDRIVER_ID, DPFLTR_ERROR_LEVEL, __VA_ARGS__)</span></span><br><span class="line"><span class="comment">//KLDR_DATA_TABLE_ENTRY</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> _<span class="title">LDR_DATA_TABLE_ENTRY</span> &#123;</span></span><br><span class="line">    LIST_ENTRY InLoadOrderLinks;</span><br><span class="line">    LIST_ENTRY InMemoryOrderLinks;</span><br><span class="line">    LIST_ENTRY InInitializationOrderLinks;</span><br><span class="line">    PVOID DllBase;</span><br><span class="line">    PVOID EntryPoint;</span><br><span class="line">    ULONG SizeOfImage;</span><br><span class="line">    UNICODE_STRING FullDllName;</span><br><span class="line">    UNICODE_STRING BaseDllName;</span><br><span class="line">    ULONG Flags;</span><br><span class="line">    USHORT LoadCount;</span><br><span class="line">    USHORT TlsIndex;</span><br><span class="line">    <span class="class"><span class="keyword">union</span> &#123;</span></span><br><span class="line">        LIST_ENTRY HashLinks;</span><br><span class="line">        <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">            PVOID SectionPointer;</span><br><span class="line">            ULONG CheckSum;</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="class"><span class="keyword">union</span> &#123;</span></span><br><span class="line">        <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">            ULONG TimeDateStamp;</span><br><span class="line">        &#125;;</span><br><span class="line">        <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">            PVOID LoadedImports;</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;LDR_DATA_TABLE_ENTRY, * PLDR_DATA_TABLE_ENTRY;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function">NTSTATUS <span class="title">DriverEntry</span><span class="params">(PDRIVER_OBJECT pDriverObj, PUNICODE_STRING pRegPath)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ULONG iCount = <span class="number">0</span>;</span><br><span class="line">    NTSTATUS ntStatus;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    PLDR_DATA_TABLE_ENTRY pLdr = <span class="literal">NULL</span>;</span><br><span class="line">    PLIST_ENTRY pListEntry = <span class="literal">NULL</span>;</span><br><span class="line">    PLIST_ENTRY pCurrentListEntry = <span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line">    PLDR_DATA_TABLE_ENTRY pCurrentModule = <span class="literal">NULL</span>;</span><br><span class="line">    pLdr = (PLDR_DATA_TABLE_ENTRY)pDriverObj-&gt;DriverSection;</span><br><span class="line">    pListEntry = pLdr-&gt;InLoadOrderLinks.Flink;</span><br><span class="line">    pCurrentListEntry = pListEntry-&gt;Flink;</span><br><span class="line">    KdBreakPoint();</span><br><span class="line">    DebugPrint(<span class="string">&quot;ModuleName : %wZ \n&quot;</span>, pLdr-&gt;BaseDllName);</span><br><span class="line">    <span class="keyword">while</span> (pCurrentListEntry != pListEntry) </span><br><span class="line">    &#123;</span><br><span class="line">        </span><br><span class="line">        pCurrentModule = CONTAINING_RECORD(pCurrentListEntry, LDR_DATA_TABLE_ENTRY, InLoadOrderLinks);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (pCurrentModule-&gt;BaseDllName.Buffer != <span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            DebugPrint(<span class="string">&quot;ModuleName = %wZ ModuleBase = %p \n&quot;</span>,</span><br><span class="line">                pCurrentModule-&gt;BaseDllName,</span><br><span class="line">                pCurrentModule-&gt;DllBase);</span><br><span class="line">        &#125;</span><br><span class="line">        pCurrentListEntry = pCurrentListEntry-&gt;Flink;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> STATUS_SUCCESS;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="http://example.com/2021/10/20/%E5%9C%A8%E9%A9%B1%E5%8A%A8%E4%B8%AD%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0INTEGRITYCHECK%E4%BB%A5%E8%B0%83%E7%94%A8PsSetCreateProcessNotifyRoutineEx%20/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -414,7 +544,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">3</span>
+          <span class="site-state-item-count">5</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
