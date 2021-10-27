@@ -20,19 +20,19 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+  <meta name="description" content="遍历的方式  peb中的三条常规链 GetModuleHandle所用的_LdrpHashTable ZwQueryVirtualMemory暴力枚举  64位系统下的32位进程有64位的peb与32位的peb两个peb，遍历模块需要遍历两个peb。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://example.com/2021/10/19/hello-world/index.html">
+<meta property="og:title" content="驱动遍历进程模块">
+<meta property="og:url" content="http://example.com/2021/10/27/%E9%A9%B1%E5%8A%A8%E9%81%8D%E5%8E%86%E8%BF%9B%E7%A8%8B%E6%A8%A1%E5%9D%97/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:description" content="遍历的方式  peb中的三条常规链 GetModuleHandle所用的_LdrpHashTable ZwQueryVirtualMemory暴力枚举  64位系统下的32位进程有64位的peb与32位的peb两个peb，遍历模块需要遍历两个peb。">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2021-10-19T08:23:45.538Z">
-<meta property="article:modified_time" content="2021-10-19T08:23:45.538Z">
+<meta property="article:published_time" content="2021-10-27T07:22:13.708Z">
+<meta property="article:modified_time" content="2021-10-27T07:28:36.166Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://example.com/2021/10/19/hello-world/">
+<link rel="canonical" href="http://example.com/2021/10/27/%E9%A9%B1%E5%8A%A8%E9%81%8D%E5%8E%86%E8%BF%9B%E7%A8%8B%E6%A8%A1%E5%9D%97/">
 
 
 <script id="page-configurations">
@@ -45,7 +45,7 @@
   };
 </script>
 
-  <title>Hello World | Hexo</title>
+  <title>驱动遍历进程模块 | Hexo</title>
   
 
 
@@ -150,7 +150,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/10/19/hello-world/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/10/27/%E9%A9%B1%E5%8A%A8%E9%81%8D%E5%8E%86%E8%BF%9B%E7%A8%8B%E6%A8%A1%E5%9D%97/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -163,7 +163,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Hello World
+          驱动遍历进程模块
         </h1>
 
         <div class="post-meta">
@@ -172,8 +172,9 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
+              
 
-              <time title="Created: 2021-10-19 16:23:45" itemprop="dateCreated datePublished" datetime="2021-10-19T16:23:45+08:00">2021-10-19</time>
+              <time title="Created: 2021-10-27 15:22:13 / Modified: 15:28:36" itemprop="dateCreated datePublished" datetime="2021-10-27T15:22:13+08:00">2021-10-27</time>
             </span>
 
           
@@ -187,19 +188,13 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+        <p> 遍历的方式</p>
+<ol>
+<li>peb中的三条常规链</li>
+<li>GetModuleHandle所用的_LdrpHashTable</li>
+<li>ZwQueryVirtualMemory暴力枚举</li>
+</ol>
+<p>64位系统下的32位进程有64位的peb与32位的peb两个peb，遍历模块需要遍历两个peb。</p>
 
     </div>
 
@@ -214,11 +209,11 @@
 
         
     <div class="post-nav">
-      <div class="post-nav-item"></div>
       <div class="post-nav-item">
-    <a href="/2021/10/19/%E5%86%85%E5%AD%98%E5%B1%9E%E6%80%A7image%E4%B8%8Emapped/" rel="next" title="内存属性image与mapped">
-      内存属性image与mapped <i class="fa fa-chevron-right"></i>
+    <a href="/2021/10/25/%E9%A9%B1%E5%8A%A8%E8%8E%B7%E5%8F%96%E8%BF%9B%E7%A8%8B%E6%98%AF%E5%90%A6wow64/" rel="prev" title="驱动获取进程是否wow64">
+      <i class="fa fa-chevron-left"></i> 驱动获取进程是否wow64
     </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -277,7 +272,6 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Quick-Start"><span class="nav-number">1.</span> <span class="nav-text">Quick Start</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Create-a-new-post"><span class="nav-number">1.1.</span> <span class="nav-text">Create a new post</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Run-server"><span class="nav-number">1.2.</span> <span class="nav-text">Run server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generate-static-files"><span class="nav-number">1.3.</span> <span class="nav-text">Generate static files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deploy-to-remote-sites"><span class="nav-number">1.4.</span> <span class="nav-text">Deploy to remote sites</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
