@@ -145,6 +145,64 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/11/08/%E4%BD%BF%E7%94%A8idapython%E5%AE%9A%E4%BD%8Dssl_write%E5%87%BD%E6%95%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="sha0ji">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="sha0ji">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/11/08/%E4%BD%BF%E7%94%A8idapython%E5%AE%9A%E4%BD%8Dssl_write%E5%87%BD%E6%95%B0/" class="post-title-link" itemprop="url">使用idapython定位ssl_write函数</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2021-11-08 11:21:24 / Modified: 11:23:25" itemprop="dateCreated datePublished" datetime="2021-11-08T11:21:24+08:00">2021-11-08</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> ida_search <span class="keyword">import</span> SEARCH_DOWN</span><br><span class="line"><span class="keyword">from</span> ida_typeinf <span class="keyword">import</span> PRTYPE_1LINE, func_type_data_t, get_arg_addrs, print_tinfo</span><br><span class="line"><span class="keyword">import</span> idaapi</span><br><span class="line"><span class="keyword">import</span> idc</span><br><span class="line"><span class="keyword">import</span> idautils</span><br><span class="line"><span class="keyword">from</span> idc_bc695 <span class="keyword">import</span> GetMnem, GetOperandValue, GetType</span><br><span class="line"></span><br><span class="line">func = idaapi.get_func(idc.here())</span><br><span class="line">base = <span class="number">0</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> idautils.Segments():</span><br><span class="line">    <span class="keyword">if</span> idc.SegName(i) == <span class="string">&quot;.rdata&quot;</span>:</span><br><span class="line">        seg = idaapi.getseg(i)</span><br><span class="line">        base = seg.startEA</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">        </span><br><span class="line">addr = idc.find_text(base, SEARCH_DOWN, <span class="number">0</span>, <span class="number">0</span>, <span class="string">&quot;ssl_lib.cc&quot;</span>)</span><br><span class="line"><span class="keyword">if</span>(addr == <span class="number">0xffffffff</span>):</span><br><span class="line">        addr = idc.find_text(base, SEARCH_DOWN, <span class="number">0</span>, <span class="number">0</span>, <span class="string">&quot;l_lib.c&quot;</span>)</span><br><span class="line"><span class="keyword">if</span>(addr == <span class="number">0xffffffff</span>):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;can&#x27;t find ssl_lib.cc&quot;</span>)</span><br><span class="line">fun_set = <span class="built_in">set</span>()</span><br><span class="line"><span class="keyword">for</span> xref <span class="keyword">in</span> idautils.XrefsTo(addr,<span class="number">0</span>):</span><br><span class="line">        fun_addr = idc.GetFunctionAttr(xref.frm, idc.FUNCATTR_START)</span><br><span class="line">        fun_set.add(fun_addr)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;fun_set size : %d&quot;</span>%<span class="built_in">len</span>(fun_set))</span><br><span class="line">ret_set = <span class="built_in">set</span>()</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> fun_set:</span><br><span class="line">    tif = idaapi.tinfo_t()</span><br><span class="line">    idaapi.get_tinfo(i, tif)</span><br><span class="line">    funcdata = func_type_data_t()</span><br><span class="line">    tif.get_func_details(funcdata)</span><br><span class="line">    <span class="keyword">if</span>(funcdata.size() == <span class="number">3</span>):</span><br><span class="line">        ret_set.add(i)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> ret_set:</span><br><span class="line">    <span class="built_in">print</span>(<span class="built_in">hex</span>(i))</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="http://example.com/2021/11/04/%E5%8D%B8%E8%BD%BD%E8%BD%AF%E4%BB%B6%E6%89%80%E5%9C%A8%E6%B3%A8%E5%86%8C%E8%A1%A8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -734,7 +792,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">8</span>
+          <span class="site-state-item-count">9</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
